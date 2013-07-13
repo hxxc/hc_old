@@ -1,0 +1,8 @@
+[07-Aug-2012 07:27:31] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[19-Aug-2012 11:24:37] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[24-Aug-2012 10:52:58] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[13-Sep-2012 00:11:59] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[28-Sep-2012 10:09:22] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[03-Oct-2012 19:15:20] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[06-Oct-2012 19:10:12] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21
+[14-Oct-2012 17:17:07] PHP Fatal error:  Call to undefined function  getrowsinarray() in /home/raulooo/public_html/data_objects/DAOConcurso.php on line 21

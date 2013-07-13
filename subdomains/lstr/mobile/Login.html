@@ -1,0 +1,51 @@
+<html> 
+    <head> 
+        <title>LSTR::Login</title>	
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    </head> 
+    <body>
+        <section id="Login" data-role="page">
+            <header data-role="header">
+                <h1>Login</h1>
+                <a href="#Inicio" data-role="button">Regresar</a>
+            </header>
+            <div data-role="content">
+                <form id="formLogin" action="#" method="post">
+                        <label for="user">Usuario:</label>
+                        <input type="text" id="user" name="user" placeholder="Usuario"/>
+                        <label for="pass">Contrase&ntilde;a:</label>
+                        <input type="password" id="pass" name="pass"/>
+                        <input type="submit" data-theme="b" value="Ingresar" name="send"/>
+                </form>
+            </div>
+            <footer data-role="footer" data-position="fixed">
+                <h2>HuaHCodinG</h2>
+            </footer>
+        </section>
+        <section id="Inicio" data-role="page">
+            <header data-role="header">
+                <h1>Ingresar</h1>
+                <a href="#Login" data-role="button">Salir</a>
+            </header>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-filter="true">
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=1&tab=2">CI B1</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=2&tab=2">CI B2</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=3&tab=2">CI B3</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=4&tab=2">CI B4</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=5&tab=2">CI B5</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=6&tab=2">CI B6</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=7&tab=2">CI B7</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=8&tab=2">CI B8</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=9&tab=2">CI B9</a></li>
+                    <li><a href="http://www.huahcoding.com/concurso_results.php?i=10&tab=2">CI B10</a></li>
+                </ul>
+            </div>
+            <footer data-role="footer" data-position="fixed">
+                <h2>HuaHCodinG</h2>
+            </footer>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>LESTER</title>
+        <link rel="shortcut icon" href="http://www.netbeans.org/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/index.css" type="text/css">
+        <link type="text/css" href="jquery-ui/css/mint-choc/jquery-ui-1.8.23.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="jquery-ui/js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.23.custom.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                mostrarHora();
+                $( "#accordion" ).accordion({
+                    header: "h3",
+                    collapsible: true
+                });                
+                $("#verFifo").click(function(){
+                    location.href="algoritmo/FIFO.html";
+                });
+                $("#verHC").click(function(){
+                    location.href="http:/www.huahcoding.com";
+                });
+                $("#verMovil").click(function(){
+                    location.href="mobile/index.html";
+                });
+                $(".options").css("height","auto");
+            });
+            function mostrarHora(){
+                var date=new Date();
+                var H=date.getHours();
+                var M=date.getMinutes();
+                var S=date.getSeconds();
+                if(H<10)
+                   H="0"+H;
+                if(M<10)
+                   M="0"+M;
+                if(S<10)
+                   S="0"+S;
+                var mes=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                var hora=date.getDay()+" de "+mes[date.getMonth()]+" del "+(1900+date.getYear())+" "+H+":"+M+":"+S;
+                $("#dateCurrent").html(hora);
+                setTimeout("mostrarHora()",1000);
+            }
+        </script>
+        <style type="text/css">
+            body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+            .demoHeaders { margin-top: 2em; }
+            #dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+            #dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+            ul#icons {margin: 0; padding: 0;}
+            ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+            ul#icons span.ui-icon {float: left; margin: 0 4px;}
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="wb_Image2" style="position:absolute;left:25px;top:100px;width:950px;height:150px;z-index:0;padding:0;">
+                <img src="images/front.jpg" id="Image2" alt="" border="0" style="width:950px;height:150px;"></div>
+            <div id="wb_Text1" style="position:absolute;left:24px;top:9px;width:652px;height:35px;z-index:1;">
+                <span style="color:#7c4106;font-family:'Trebuchet MS';font-size:27px;"><strong>.::LSTR</strong></span></div>
+            <div id="wb_Text2" style="position:absolute;left:24px;top:45px;width:652px;height:18px;z-index:2;">
+                <span style="color:#CCCCCC;font-family:'Trebuchet MS';font-size:13px;">Lester Narvasta Ramirez</span></div>
+            <div id="wb_Text5" style="position:absolute;left:37px;top:85px;width:242px;height:24px;z-index:3;">
+                <span style="color:#EEEEEE;font-family:'Trebuchet MS';font-size:19px;"><strong>...</strong></span></div>
+            <div id="wb_Text10" style="position:absolute;left:24px;top:75px;width:652px;height:18px;z-index:4;">
+                <span style="color:#EEEEEE;font-family:'Trebuchet MS';font-size:16px;"><strong id="dateCurrent"></strong></span></div>
+            <div id="wb_Shape1" style="position:absolute;left:26px;top:581px;width:960px;height:56px;z-index:5;padding:0;">
+                <img src="images/img0001.gif" id="Shape1" alt="" title="" style="border-width:0;width:960px;height:56px;"></div>
+            <div id="wb_Text13" style="position:absolute;left:28px;top:280px;width:180px;height:24px;z-index:6;">
+                <span style="color:#FFFFFF;font-family:'Trebuchet MS';font-size:19px;">Menu</span></div>
+            <div id="wb_Text17" style="position:absolute;left:27px;top:600px;width:960px;height:18px;text-align:center;z-index:7;">
+                <span style="color:#EEEEEE;font-family:'Trebuchet MS';font-size:13px;"><strong>© 2012 - LSTR</strong></span></div>
+            <div class="demo" style="position:absolute;left:28px;top:305px;width:180px;z-index:8;padding:0;">
+                <div id="accordionResizer" class="ui-widget-content">
+                    <div id="accordion">
+                        <h3><a href="#">Inicio</a></h3>
+                        <div class="options">
+                            <label class="lnk">Inicio</label>
+                            <p class="lnk" id="verMovil">Login Movil</p>
+                            <p class="lnk" id="verFifo">Algoritmo FIFO</p>                            
+                        </div>
+                        <h3><a href="#">Enlaces</a></h3>
+                        <div class="options">
+                            <p class="lnk" id="verHC">HuaHCodinG</p>                            
+                        </div>
+                        <h3><a href="#">Seccion 3</a></h3>
+                        <div class="options">
+                            <p class="lnk">Salir</p>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,265 @@
+<html>
+    <title>ALGORITMO FIFO</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        var arrayData=[];
+        var timetotal;
+        var numR=1;
+        var alturaDivBarProcess=115;
+        $(document).ready(function(){
+            LoadProcess();
+            agregarBarProcess();
+            $(".containerPage").css("height","100%");
+            $("#Add").click(function(){
+                var TI=$("#TI").val();
+                var TE=$("#TE").val();
+                $("#TI").val("");
+                $("#TE").val("");
+                var row=$(".containerData").length/4;
+                $("#bodyTBProc").append("<tr><td><div class='containerData'>P"+(row+1)+"</div></td><td><div class='containerData'>"+TI+"</div></td><td><div class='containerData'>"+TE+"</div></td><td><div class='containerData'>1</div></td></tr>");
+                LoadProcess();
+                agregarBarProcess();
+            });
+            $("#Start").click(function(){
+                $("#TI").attr("disabled","disabled");
+                $("#TE").attr("disabled","disabled");
+                $("#Start").attr("disabled","disabled");
+                $("#Add").attr("disabled","disabled");                
+                incrementar();
+            });
+            $('#PageRefresh').click(function() { 
+                location.reload(); 
+            });
+        });
+        var time=1;
+        var proccAct=0;
+        function incrementar(){
+            if(arrayData[proccAct][2]==0){
+                console.info("llego a su fin "+arrayData[proccAct][0]);
+                proccAct++;
+                if(numR>proccAct+1){
+                    agregarProcess(proccAct+1);
+                }
+            }
+            var t=$("#P_"+(proccAct+1)).css("width");
+            t=t.replace("px", "");
+            var nuevo=(Number(t)+25);
+            $("#P_"+(proccAct+1)).html(arrayData[proccAct][0]).animate({"width":nuevo+"px"},500);
+            arrayData[proccAct][2]--;
+            $("#B_"+(proccAct+1)).css("height",(arrayData[(proccAct)][2]*10)+"px");
+            $("#B_"+(proccAct+1)).css("bottom","-"+(alturaDivBarProcess-(arrayData[(proccAct)][2]*10))+"px");
+            $("#info").html("Tiempo "+ time+".........Procesando "+arrayData[proccAct][0]);
+            var nuevaRecta=(time>10)?$("#recta").html()+"&nbsp;&nbsp;&nbsp;":$("#recta").html()+"&nbsp;&nbsp;&nbsp;&nbsp;";
+            $("#recta").html(nuevaRecta+time);
+            if(time++<timetotal){
+                setTimeout("incrementar()",1000);
+            }
+
+        }
+        function LoadProcess(){
+            var i=0;
+            var cadena="";
+            numR=1;
+            $(".containerData").each(function(idx, el) {
+                if(i<3){
+                    cadena=cadena+$(el).html()+",";
+                    i++;
+                }else{
+                    cadena=cadena+$(el).html()+"-";
+                    i=0;
+                    numR++;
+                }
+            }
+        );
+            rows=cadena.split("-");
+            timetotal=0;
+            arrayData=[];
+            for(var i=0;i<rows.length-1;i++){
+                var R=rows[i].split(",");
+                timetotal=timetotal+Number(R[2]);
+                arrayData.push(R);
+            }
+        }
+        function agregarProcess(i){
+            var add="<div id='P_"+i+"' class='divProcess'></div>";
+            $("#containerProcess").append(add);
+            agregarBarProcess();
+        }
+        function agregarBarProcess(){
+            $("#ContainerBarProcess").empty();            
+            for(var i=1;i<numR;i++){
+                //                console.info(numR);
+                var span="<span class='spn'>"+(arrayData[i-1][0])+"<span>";
+                var add="<div id='B_"+i+"' style='bottom: -"+(alturaDivBarProcess-arrayData[i-1][2]*10)+"px;' class='barProcess'>"+span+"</div>";
+                $("#ContainerBarProcess").append(add);
+                $("#B_"+i).css("height",(arrayData[i-1][2]*10)+"px");
+            }
+        }
+        
+    </script>
+    <style type="text/css">
+        .spn{
+            position: relative;
+            top: -18px;
+        }
+        .containerData{
+            position: relative;
+            border-radius:5px;
+            height: 20px;
+            left: 10%;
+            width: 80%;
+            background-color: #cfd0d0;
+            padding: 1px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #TBProcesos:tr{
+            margin: 5px;
+        }
+        #TBProcesos{
+            width: 100%;
+            background-color: #7a7676;
+            border: 2px solid #333333;
+            border-radius:3px;
+        }
+        .divProcess{
+            height: 25px;
+            width: 0px;
+            background-color: #119c08;
+            border: 1px solid #066000;
+            float: left;
+            text-align: center;
+            padding: 2px;
+            font-weight: bold;
+            text-align: center;
+            border-radius:3px;
+        }
+        .barProcess{
+            position: relative;            
+            margin: 3px;
+            width: 50px;
+            border: 2px solid #4c504c;
+            background: #2aa22a;
+            float: left;
+            margin-bottom: 1px;
+            border-radius:3px;
+            text-align: center;
+
+        }
+        #info{
+            border: 1px solid #055b05;
+            background-color: #9dfa9d;
+            color: #215921;
+            font-size: 11px;
+            font-weight: bold;
+            height: 13px;
+            margin-left: 5%;
+            width: 95%;
+            text-align: center;
+        }
+        #pageRefresh{
+            -moz-transform: rotate(270deg);
+            -moz-transform-origin: 50% 50%;
+            -webkit-transform: rotate(270deg);
+            -webkit-transform-origin: 50% 50%;
+        }
+        .fb-comments{
+            position: relative;
+            left: 15%;
+            height: auto;
+            width: 70%;            
+            text-align: center;
+        }
+    </style>
+    <body style="background-color: #292828 ">
+        <div class="containerPage" style="position: absolute;height: 100%;top: 0px;padding-top: 20px;width: 90%;left: 5%;background-color: #3b3a3a;border-left: 1px solid #b5b4b4;border-right: 1px solid #b5b4b4 ">
+            <div style="width: 50%;left: 25%;position: relative">
+                <div style="text-align: center;padding: 15px;font-size: 20px;font-weight: bold;color: #ab3e03 ">PLANIFICACION DE PROCESOS - ALGORITMO FIFO</div>
+                <table id="TBProcesos">
+                    <thead>
+                        <tr style="background-color: #605f5f;color: #f4eded;font-size: 15px">
+                            <th>Nombre</th>
+                            <th>T. Inicio</th>
+                            <th>T. Ejecuci&oacute;n</th>
+                            <th>Prioridad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTBProc">
+                        <tr>
+                            <td><div class="containerData">P1</div></td><td><div class="containerData">0</div></td>
+                            <td><div class="containerData">7</div></td><td><div class="containerData">2</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="containerData">P2</div></td><td><div class="containerData">3</div></td>
+                            <td><div class="containerData">3</div></td><td><div class="containerData">1</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="containerData">P3</div></td><td><div class="containerData">5</div></td>
+                            <td><div class="containerData">4</div></td><td><div class="containerData">3</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="containerData">P4</div></td><td><div class="containerData">6</div></td>
+                            <td><div class="containerData">1</div></td><td><div class="containerData">2</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><br>
+            <div style="position: relative;background-color: #bdbfbf;height: 150px;left: 15%;width: 70%;border: 2px solid #777e7e;border-radius:3px">
+                <div style="height: 100%;width: 30%;float: left;background: #979a97">
+                    <table>
+                        <col width="40%">
+                        <col width="60%">
+                        <tr>
+                            <td style="text-align: right">T. Inicio</td>
+                            <td><input type="text" id="TI" style="border-radius:3px"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">T. Ejecucion</td>
+                            <td><input type="text" id="TE" style="border-radius:3px"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">Agregar</td>
+                            <td><button id="Add" style="height: 25px;;width: 100%">Agregar</button></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right">Iniciar</td>
+                            <td><button id="Start" style="height: 25px;;width: 100%">Start</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" ><div id="info">WAITING........</div></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="ContainerBarProcess" style="height: 100%;width: 70%">
+                </div>
+            </div><br>
+            <div id="containerProcess" style="position: relative;width: 70%;left: 15%;padding: 5px;background: #838585;height: 35px">
+                <div id="P_1" class="divProcess">
+                </div>
+            </div>
+            <div id="recta" style="position: relative;width: 70%;left: 15%;padding: 5px;background: #838585;height: 15px">0
+            </div>
+            <div id="PageRefresh" style="text-align: center;position: fixed;width: 80px;border: 1px solid #FFF;font-size: 20px;cursor: pointer;color: white;height: 30px;left: 38px;top: 25px;padding: 5px;background: #1d1d1d ">Reiniciar
+            </div>
+
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div style="padding: 3px"></div>
+            <div style="position: absolute;left: 15%;border: 2px solid #cbc8c8 ;height: auto;border-radius: 8px;width: 70%;background-color: #0d2424 ">
+                <div style="color: #FFF;text-align: center;font-size: 25px">Publicar un Comentario</div>
+            </div>
+            <div style="padding: 20px"></div>
+            <div style="position: absolute;padding-top: 10px;left: 25%;border: 2px solid #cbc8c8 ;height: auto;border-radius: 8px;width: 50%;background-color: #3e3e3e ">
+                <div class="fb-comments" data-href="http://lstr.huahcoding.com/algoritmo/FIFO.html" data-num-posts="5" data-width="470"></div>
+            </div>
+        </div>
+    </body>
+</html>
